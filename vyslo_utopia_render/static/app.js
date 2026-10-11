@@ -2,6 +2,7 @@
 const form = document.getElementById("address-form");
 const address = document.getElementById("address");
 const viewer = document.getElementById("viewer");
+const viewerWrap = document.getElementById("viewer-wrap");
 const empty = document.getElementById("empty");
 const notice = document.getElementById("notice");
 const openNew = document.getElementById("open-new");
@@ -86,7 +87,7 @@ function navigate(value, addHistory = true) {
   currentAddress.textContent = url;
   openNew.href = url;
   openNew.style.pointerEvents = "auto";
-  empty.hidden = true;
+  viewerWrap.hidden = false;
   viewer.hidden = true;
   youtubeFrame.hidden = true;
   youtubeFrame.replaceChildren();
