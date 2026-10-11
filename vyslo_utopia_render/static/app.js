@@ -55,3 +55,4 @@ openNew.addEventListener("click", () => {
 viewer.addEventListener("load", () => {
   if (currentUrl) notice.textContent = "表示を試みたよ。サイト側が埋め込みを禁止している場合は、新しいタブで開いてね。";
 });
+console.log("VYSLO 起動成功");
