@@ -1,62 +1,51 @@
+
 <!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080d19">
-  <title>VYSLO UTOPIA — Web Explorer</title>
+  <title>VYSLO UTOPIA</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="/" aria-label="VYSLO UTOPIA ホーム">
-      <span class="brand-mark">V</span><span>VYSLO <b>UTOPIA</b></span>
-    </a>
-    <span class="status"><i></i> WEB EXPLORER</span>
+  <header>
+    <h1>VYSLO <span>UTOPIA</span></h1>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="eyebrow">LEARN · EXPLORE · DISCOVER</div>
-      <h1>Explore the <span>web.</span></h1>
-      <p>気になるページを開いて、新しい知識を見つけよう。</p>
-    </section>
+    <form id="address-form">
+      <input id="address" type="text" placeholder="URLまたは検索ワードを入力" required>
+      <button type="submit">開く ↗</button>
+    </form>
 
-    <section class="browser panel" aria-label="ブラウザ">
-      <form id="address-form" class="address-row">
-        <button type="button" id="back" class="tool" title="戻る" aria-label="戻る">←</button>
-        <button type="button" id="forward" class="tool" title="進む" aria-label="進む">→</button>
-        <button type="button" id="reload" class="tool" title="再読み込み" aria-label="再読み込み">↻</button>
-        <div class="address-wrap">
-          <span class="lock">⌁</span>
-          <input id="address" type="text" placeholder="https://example.com" autocomplete="url" spellcheck="false" aria-label="URL">
-        </div>
-        <button class="go" type="submit">開く <span>↗</span></button>
-      </form>
-      <div class="notice" id="notice">URLを入力して「開く」を押してね。表示できないサイトは、新しいタブで開けるよ。</div>
-      <div class="viewer-wrap">
-        <div class="empty" id="empty">
-          <div class="empty-icon">✦</div>
-          <h2>どこへ行こう？</h2>
-          <p>上のアドレス欄にURLを入力してスタート。</p>
-          <div class="quick-links">
-            <button data-url="https://www.wikipedia.org/">Wikipedia <span>↗</span></button>
-            <button data-url="https://www.openstreetmap.org/">OpenStreetMap <span>↗</span></button>
-            <button data-url="https://example.com/">Example <span>↗</span></button>
-          </div>
-        </div>
-        <iframe id="viewer" title="Webページ表示" referrerpolicy="no-referrer" sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" hidden></iframe>
+    <nav>
+      <button type="button" data-url="https://www.wikipedia.org/">Wikipedia</button>
+      <button type="button" data-url="https://www.youtube.com/">YouTube</button>
+      <button type="button" data-url="https://example.com/">Example</button>
+    </nav>
+
+    <section class="browser">
+      <div class="toolbar">
+        <button id="back" type="button" disabled>←</button>
+        <button id="forward" type="button" disabled>→</button>
+        <button id="reload" type="button" disabled>↻</button>
+        <span id="current-address">ここにページが表示されるよ</span>
+        <a id="open-new" href="https://example.com/" target="_blank" rel="noopener noreferrer">新しいタブ ↗</a>
       </div>
-      <div class="viewer-footer">
-        <span><i class="dot"></i> VYSLO UTOPIA</span>
-       <a id="open-new" href="https://example.com/"
-   target="_blank" rel="noopener noreferrer">
-  新しいタブで開く ↗
-</a>
+
+      <p id="notice">URLを入力して「開く」を押してね。</p>
+
+      <div id="empty">
+        <h2>次のページを開こう</h2>
+        <p>対応しているWebサイトやYouTubeをここに表示するよ。</p>
+      </div>
+
+      <div id="viewer-wrap" hidden>
+        <iframe id="viewer" title="Webページ表示" hidden></iframe>
+        <div id="youtube-frame" hidden></div>
       </div>
     </section>
-    <p class="fineprint">一部のサイトはセキュリティ設定により、この画面内に表示できないことがあります。その場合は「新しいタブで開く」を使ってね。</p>
   </main>
-  <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>
