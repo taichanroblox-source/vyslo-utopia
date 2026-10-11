@@ -87,7 +87,10 @@ function navigate(value, addHistory = true) {
   currentAddress.textContent = url;
   openNew.href = url;
   openNew.style.pointerEvents = "auto";
+  empty.hidden = true;
   viewerWrap.hidden = false;
+  viewer.hidden = true;
+  youtubeFrame.hidden = true;
   viewer.hidden = true;
   youtubeFrame.hidden = true;
   youtubeFrame.replaceChildren();
